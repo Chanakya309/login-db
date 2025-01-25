@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: none;
+        }
+
+        form.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .toggle {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .toggle a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .toggle a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 id="form-title">Login</h2>
+
+        <!-- Login Form -->
+        <form id="login-form" class="active" action="login.php" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Registration Form -->
+        <form id="register-form" action="register.php" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <!-- Toggle Links -->
+        <div class="toggle">
+            <p id="toggle-text"><a href="#" id="toggle-link">Don't have an account? Register here</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle forms
+        const loginForm = document.getElementById("login-form");
+        const registerForm = document.getElementById("register-form");
+        const toggleText = document.getElementById("toggle-text");
+        const toggleLink = document.getElementById("toggle-link");
+        const formTitle = document.getElementById("form-title");
+
+        function toggleForms() {
+            if (loginForm.classList.contains("active")) {
+                // Switch to Registration Form
+                loginForm.classList.remove("active");
+                registerForm.classList.add("active");
+                formTitle.textContent = "Register";
+                toggleLink.textContent = "Already have an account? Login here";
+            } else {
+                // Switch to Login Form
+                registerForm.classList.remove("active");
+                loginForm.classList.add("active");
+                formTitle.textContent = "Login";
+                toggleLink.textContent = "Don't have an account? Register here";
+            }
+        }
+
+        // Attach event listener for toggling
+        toggleLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleForms();
+        });
+    </script>
+</body>
+</html>
